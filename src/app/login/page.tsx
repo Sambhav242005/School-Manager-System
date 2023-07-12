@@ -8,7 +8,7 @@ export default function () {
               <div className="rounded-t mb-0 px-6 py-6">
                 <div className="text-center mb-3">
                   <h6 className="text-blue-500 text-sm font-bold">
-                    Sign in
+                    Login Form
                   </h6>
                 </div>
                 <div className="btn-wrapper text-center"></div>
@@ -50,7 +50,7 @@ export default function () {
                         className="form-checkbox border-0 rounded text-blue-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                       />
                       <span className="ml-2 text-sm font-semibold text-blue-600">
-                        Remember
+                        Remember Me
                       </span>
                     </label>
                   </div>
