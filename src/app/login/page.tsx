@@ -50,7 +50,7 @@ export default function () {
                         className="form-checkbox border-0 rounded text-blue-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                       />
                       <span className="ml-2 text-sm font-semibold text-blue-600">
-                        Remember me
+                        Remember
                       </span>
                     </label>
                   </div>
