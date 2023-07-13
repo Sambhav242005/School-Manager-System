@@ -20,7 +20,7 @@ const Header = () => {
                 Artificial intelligence school
               </span>
             </a>
-            <div lassName="flex items-center lg:order-2">
+            <div className="flex items-center lg:order-2">
               <a
                 href="login"
                 className="text-white text-lg  focus:ring-4 focus:ring-indigo-500 font-medium rounded-lg px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
