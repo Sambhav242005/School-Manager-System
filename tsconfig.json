@@ -29,7 +29,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/test/main.test.js"
+    "src/test/main.test.js",
+    "src/pages/api/upload.js"
   ],
   "exclude": ["node_modules"]
 }
