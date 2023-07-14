@@ -13,8 +13,6 @@ export default function handler(
   // Convert the CSV data to a table format (you can use any logic or library you prefer)
   const tableData = convertToTable(data);
 
-  console.log(tableData);
-
   res.status(200).json(tableData);
 }
 function convertToTable(csvData: any[][]): any[] {
