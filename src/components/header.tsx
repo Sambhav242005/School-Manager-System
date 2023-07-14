@@ -5,6 +5,10 @@ import "@/style/dropdown.css";
 const Header = () => {
   return (
     <>
+      <script
+        src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"
+        defer
+      ></script>
       <header>
         <nav className=" border-gray-200  bg-[#264c86]">
           <div className="flex flex-wrap justify-between items-center mx-auto px-2">
@@ -120,7 +124,7 @@ const Header = () => {
                 <li>
                   <div className="dropdown">
                     <button className="dropbtn flex">
-                      <a href="students">Students & Partents </a>
+                      <a href="students&parents">Students & Parents </a>
                       <i className="fa fa-caret-down">
                         <svg className="w-8 h-8 p-[1px]" fill="none">
                           <path
