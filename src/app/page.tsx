@@ -1,7 +1,7 @@
+"use client";
+
 import DPMesg from "@/components/DP-mesg";
 import Slider from "@/components/slider";
-import Image from "next/image";
-import pincipal from "img/principal.jpg";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
