@@ -1,7 +1,17 @@
 "use client";
+interface Teacher {
+  id: number;
+  name: string;
+}
+
+interface Category {
+  [key: string]: Teacher[];
+}
+
+type Data = Category[];
 
 export default function Page() {
-  const data = [
+  const data: Data = [
     {
       Primary: [
         {

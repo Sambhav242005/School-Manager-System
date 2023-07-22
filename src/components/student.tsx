@@ -1,6 +1,6 @@
-"use client";
+import React from "react";
 
-export default function () {
+export default function MyComponent() {
   const primary = [
     {
       class_1: [
@@ -43,17 +43,6 @@ export default function () {
     return result;
   }
 
-  //   Object.entries(primary).forEach(([key, value]) => {
-  //     Object.entries(value).forEach(([key_items, value_items]) => {
-  //       console.log(key_items.replaceAll("_", " "));
-  //       list_cl.push(key_items.replaceAll("_", " "));
-
-  //       Object.entries(value_items).forEach(([key_item, value_item]) => {
-  //         console.log(key_item, value_item);
-  //       });
-  //     });
-  //   });
-
   return (
     <>
       <section className="text-gray-600 body-font bg-gray-50 h-screen w-full flex justify-center items-center">
@@ -70,7 +59,7 @@ export default function () {
                   key={makeid(20)}
                   className="flex flex-wrap w-auto text-center"
                 >
-                  {Object.entries(value_items).map(([, value_item]) => (
+                  {Object.entries(value_items).map(([, value_item]: any) => (
                     <div className="p-4 min-w-max  sm:w-1/2 lg:w-1/3 w-full hover:scale-105 duration-500">
                       <div className=" flex items-center  justify-between p-4  rounded-lg bg-white shadow-indigo-50 shadow-md">
                         <div>
