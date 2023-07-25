@@ -21,7 +21,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "img/*": ["./public/image/*"]
+      "img/*": ["./public/image/*"],
+      "css/*":["./src/style/*"]
     }
   },
   "include": [

@@ -8,6 +8,8 @@ export default function(){
       <a href="#" className="bg-gray-900 hover:bg-gray-700 p-2 rounded cursor-pointer ml-2">Assignments</a>
       <a href="#" className="bg-gray-900 hover:bg-gray-700 p-2 rounded cursor-pointer ml-5">Scheduled Classes</a>
       <a href="#" className="bg-gray-900 hover:bg-gray-700 p-2 rounded cursor-pointer ml-5">Query</a>
+      <a href="#" className="bg-gray-900 hover:bg-gray-700 p-2 rounded cursor-pointer ml-5">Student</a>
+
     </div>
   </nav>
   
@@ -20,7 +22,7 @@ export default function(){
       <div className="text-sm">
         <div className="bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300"><a href="parents/timetable">Time Table</a></div>
         <div className="bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300"><a href="parents/testscore">Test Upcoming / Done / Score </a></div>
-        <div className="bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300"> Report Card</div>
+        <div className="bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300"><a href="parents/result"> Report Card</a></div>
         <div className="bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300"> PTM</div>
         <div className="bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300"> Upcoming Events</div>
       </div>

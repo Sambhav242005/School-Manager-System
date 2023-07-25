@@ -1,42 +1,45 @@
-import TimeTable from "@/components/time-table";
-
 export default function(){
     return<>
-  
-    <header className="w-full bg-gray-800 p-4 flex justify-between items-center">
-  <nav className="flex items-center">
-    <div className="text-white text-xs hidden sm:block ">
-      <a href="#" className="bg-gray-900 hover:bg-gray-700 p-2 rounded cursor-pointer ml-2">Assignments</a>
-      <a href="#" className="bg-gray-900 hover:bg-gray-700 p-2 rounded cursor-pointer ml-5">Scheduled Classes</a>
-      <a href="#" className="bg-gray-900 hover:bg-gray-700 p-2 rounded cursor-pointer ml-5">Query</a>
-    </div>
-  </nav>
-  
-</header>
-
-
-<main className="flex w-full h-screen">
-<aside className="w-80 h-screen bg-gray shadow-md w-fulll hidden sm:block">
-  <div className="flex flex-col justify-between h-screen p-4 bg-gray-800">
-      <div className="text-sm">
-        <div className="bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300">
-          Time Table</div>
-        <div className="bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300">Test Done</div>
-        <div className="bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300">Upcoming Test</div>
-        <div className="bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300">Test Score</div>
-        <div className="bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300">Report Card</div>
-        <div className="bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300">PTM</div>
-        <div className="bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300">Upcoming Events</div>
-      </div>
-
-
+    <div className="md:px-32 py-8 w-full">
+  <div className="shadow overflow-hidden rounded border-b border-gray-200">
+    <table className="min-w-full bg-white">
+      <thead className="bg-gray-800 text-white">
+        <tr>
+          <th className="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Date</th>
+          <th className="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Day</th>
+          <th className="text-left py-3 px-4 uppercase font-semibold text-sm">Subject</th>
+        </tr>
+      </thead>
+    <tbody className="text-gray-800">
+      <tr>
+        <td className="w-1/3 text-left py-3 px-4">01/08/2023</td>
+        <td className="w-1/3 text-left py-3 px-4">Tuesday</td>
+        <td className="w-1/3 text-left py-3 px-4">English</td>
+      </tr>
+      <tr className="bg-gray-200">
+        <td className="w-1/3 text-left py-3 px-4">03/08/2023</td>
+        <td className="w-1/3 text-left py-3 px-4">Thursday</td>
+        <td className="w-1/3 text-left py-3 px-4">Science</td>
+      </tr>
+      <tr>
+        <td className="w-1/3 text-left py-3 px-4">05/08/2023</td>
+        <td className="w-1/3 text-left py-3 px-4">Saturday</td>
+        <td className="w-1/3 text-left py-3 px-4">Hindi</td>
+      </tr>
+      <tr className="bg-gray-200">
+        <td className="w-1/3 text-left py-3 px-4">07/08/2023</td>
+        <td className="w-1/3 text-left py-3 px-4">Monday</td>
+        <td className="w-1/3 text-left py-3 px-4">Maths</td>
+      </tr>
+      <tr>
+        <td className="w-1/3 text-left py-3 px-4">09/08/2023</td>
+        <td className="w-1/3 text-left py-3 px-4">Wednesday</td>
+        <td className="w-1/3 text-left py-3 px-4">Social Science</td>
+      </tr>
+    </tbody>
+    </table>
   </div>
-</aside>
-
-  
-<TimeTable></TimeTable>
-
-
-</main>
+</div>
     </>
 }
+
