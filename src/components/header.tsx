@@ -93,9 +93,9 @@ const Header = () => {
                       </i>
                     </button>
                     <div className="dropdown-content">
-                      <a href="/#">Mission & Vision</a>
-                      <a href="/#dm">Directior's Message</a>
-                      <a href="/#pm">Principal's Message</a>
+                      <a href="/">Mission & Vision</a>
+                      <a href="#dm">Directior's Message</a>
+                      <a href="#pm">Principal's Message</a>
                     </div>
                   </div>
                 </li>
