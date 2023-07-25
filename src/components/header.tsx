@@ -24,23 +24,23 @@ const Header = () => {
                 Artificial intelligence school
               </span>
             </a>
-            <div className="flex items-center lg:order-2">
+            <div className="flex items-center xl:order-2">
               <a
                 href="login"
-                className="text-white text-lg  focus:ring-4 focus:ring-indigo-500 font-medium rounded-lg px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
+                className="text-white text-lg  focus:ring-4 focus:ring-indigo-500 font-medium rounded-lg px-4 xl:px-5 py-2 xl:py-2.5 mr-2 focus:outline-none"
               >
                 Log in
               </a>
               <a
                 href="registration"
-                className="text-white m-4 text-base bg-[#3c74bb] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 lg:px-5 py-2 lg:py-2.5 mr-2  focus:outline-none "
+                className="text-white m-4 text-base bg-[#3c74bb] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 xl:px-5 py-2 xl:py-2.5 mr-2  focus:outline-none "
               >
                 Registration
               </a>
               <button
                 data-collapse-toggle="mobile-menu-2"
                 type="button"
-                className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg xl:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                 aria-controls="mobile-menu-2"
                 aria-expanded="false"
               >
@@ -72,10 +72,10 @@ const Header = () => {
               </button>
             </div>
             <div
-              className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
+              className="hidden justify-between items-center w-full xl:flex xl:w-auto xl:order-1"
               id="mobile-menu-2"
             >
-              <ul className="flex flex-col mt-3 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+              <ul className="flex flex-col mt-3 font-medium xl:flex-row xl:space-x-8 xl:mt-0">
                 <li>
                   <div className="dropdown">
                     <button className="dropbtn flex">
@@ -93,7 +93,7 @@ const Header = () => {
                       </i>
                     </button>
                     <div className="dropdown-content">
-                      <a href="/">Mission & Vision</a>
+                      <a href="#">Mission & Vision</a>
                       <a href="#dm">Directior's Message</a>
                       <a href="#pm">Principal's Message</a>
                     </div>
@@ -138,9 +138,13 @@ const Header = () => {
                       </i>
                     </button>
                     <div className="dropdown-content">
-                      <a href="#">School Timing</a>
-                      <a href="#">Visiting Hours</a>
-                      <a href="#">School Uniform</a>
+                      <a href="/students&parents#school-timing">
+                        School Timing
+                      </a>
+                      <a href="/students&parents#school-timing">
+                        Visiting Hours
+                      </a>
+                      <a href="/students&parents#uniform">School Uniform</a>
                     </div>
                   </div>
                 </li>
