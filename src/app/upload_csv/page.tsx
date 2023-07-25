@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import axios from "axios";
 import Papa from "papaparse";
 
 function UploadFile() {
@@ -24,25 +23,27 @@ function UploadFile() {
   const handleSubmit = async () => {
     try {
       let dict_list: any[] = [];
+      if (csvData != null) {
+        const twoDimensionalArray: any[][] = csvData as any[][];
+        const table = convertToTable(twoDimensionalArray);
+        const json = table;
+        setTableData(json);
 
-      const response = await axios.post("/api/upload", { data: csvData });
-      const json = response.data;
-      setTableData(json);
+        let header_list: string[] = [];
 
-      let header_list: string[] = [];
+        Object.keys(tableData[0]).map((header) => {
+          header_list.push(header);
+        });
+        dict_list.push(header_list);
 
-      Object.keys(tableData[0]).map((header) => {
-        header_list.push(header);
-      });
-      dict_list.push(header_list);
+        tableData.map((row) => {
+          dict_list.push(row);
+        });
 
-      tableData.map((row) => {
-        dict_list.push(row);
-      });
-
-      const list = sorter(dict_list, "english");
-      setListTop(list);
-      console.log(list);
+        const list = sorter(dict_list, "english");
+        setListTop(list);
+        console.log(list);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -211,4 +212,19 @@ function bubbleSort(arr: number[], compare = defaultCompare) {
     }
   }
   return arr;
+}
+
+function convertToTable(csvData: any[][]): any[] {
+  const headers: string[] = csvData[0]; // Assume the first row contains the headers
+  const tableData: any[] = [];
+
+  for (let i = 1; i < csvData.length - 1; i++) {
+    const row: Record<string, any> = {};
+    for (let j = 0; j < headers.length; j++) {
+      row[headers[j]] = csvData[i][j];
+    }
+    tableData.push(row);
+  }
+
+  return tableData;
 }
