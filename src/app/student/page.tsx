@@ -135,7 +135,7 @@ const SpecificRoutePage: React.FC = () => {
                           className="relative w-5 h-5"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          stroke-width="2"
+                          strokeWidth="2"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
                         >
