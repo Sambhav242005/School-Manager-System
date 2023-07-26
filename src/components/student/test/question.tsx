@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface Question {
   options: string[];
@@ -9,9 +9,9 @@ interface Question {
 interface TestProps {
   questions: Question[];
   onSelectOption: (
+    currentQuestion: number,
     option: string,
-    question: string,
-    correctAnswer: string
+    question: string
   ) => void;
 }
 
@@ -24,22 +24,20 @@ const TestSeries: React.FC<TestProps> = ({ questions, onSelectOption }) => {
     } else if (click == "down") {
       setCurrentQuestion(currentQuestion - 1);
     }
-    if (currentQuestion >= questions.length) {
-      setCurrentQuestion(0);
-    }
-    if (currentQuestion < -1) {
-      setCurrentQuestion(0);
-    }
   };
 
-  const handleOptionClick = (
-    option: string,
-    question: string,
-    correctAnswer: string
-  ) => {
-    onSelectOption(option, question, correctAnswer);
+  useEffect(() => {
+    if (currentQuestion > questions.length) {
+      setCurrentQuestion(0);
+    } else if (currentQuestion < -1) {
+      setCurrentQuestion(0);
+    }
+  });
+
+  const handleOptionClick = (option: string, question: string) => {
+    setCurrentQuestion(currentQuestion + 1);
+    onSelectOption(currentQuestion, option, question);
   };
-  console.log(currentQuestion === questions.length);
 
   return (
     <div className="flex flex-col  justify-center min-h-screen p-10 py-2">
@@ -56,7 +54,7 @@ const TestSeries: React.FC<TestProps> = ({ questions, onSelectOption }) => {
             className="bg-blue-500 text-white px-4 py-2 rounded-md"
             onClick={() => handleStart("down")}
           >
-            Pervise Question
+            Submit Answer
           </button>
         </>
       ) : (
@@ -76,8 +74,7 @@ const TestSeries: React.FC<TestProps> = ({ questions, onSelectOption }) => {
                 onClick={() =>
                   handleOptionClick(
                     option,
-                    questions[currentQuestion]?.question,
-                    questions[currentQuestion].correctAnswer
+                    questions[currentQuestion]?.question
                   )
                 }
               >

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Question from "@/components/student/test/question";
-import Link from "next/link";
+import { useParams } from "next/navigation";
 
 const questions = [
   {
@@ -28,37 +28,43 @@ interface Question {
 }
 
 export default function Home() {
+  const id = useParams().id;
+  console.log(id);
+
   const [answers, setAnswers] = useState<Question[]>([]);
 
   function handleAnswer(
+    currentQuestion: number,
     option: string,
-    thisQuestion: string,
     correctAnswer: string
   ) {
+    const currentQuestionObj = questions[currentQuestion];
+
     // Check if the answer for this question is already in the answers array
-    const existingAnswer = answers.find(
-      (item) => item.question === thisQuestion
+    const existingAnswerIndex = answers.findIndex(
+      (item) => item.question === currentQuestionObj.question
     );
 
-    if (existingAnswer) {
+    if (existingAnswerIndex !== -1) {
       // If the answer exists, update the answer for this question
-      const updatedAnswers = answers.map((item) =>
-        item.question === thisQuestion ? { ...item, answer: option } : item
-      );
+      const updatedAnswers = [...answers];
+      updatedAnswers[existingAnswerIndex] = {
+        ...updatedAnswers[existingAnswerIndex],
+        answer: option,
+      };
       setAnswers(updatedAnswers);
     } else {
       // If the answer does not exist, add it to the answers array
-      setAnswers([
-        ...answers,
+      setAnswers((prevAnswers) => [
+        ...prevAnswers,
         {
-          question: thisQuestion,
+          question: currentQuestionObj.question,
           answer: option,
           correctAnswer: correctAnswer,
         },
       ]);
     }
   }
-  console.log(answers);
 
   return (
     <>
@@ -68,10 +74,16 @@ export default function Home() {
         <p>Total Marks </p>
         <button>Exit</button>
       </div>
-      <Question onSelectOption={handleAnswer} questions={questions}></Question>
-      <Link href="/user/{id}?interests={JSON.stringify(data)}">
+
+      <a
+        href={
+          `/student/reportcard/` + id + `?data=` + JSON.stringify(answers) + ``
+        }
+        className=" p-4 m-5 text-3xl  text-white"
+      >
         Go to report page
-      </Link>
+      </a>
+      <Question onSelectOption={handleAnswer} questions={questions}></Question>
     </>
   );
 }

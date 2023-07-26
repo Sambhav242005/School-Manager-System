@@ -1,5 +1,4 @@
 "use client";
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -12,6 +11,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [select, setSelected] = useState("");
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
   let add = usePathname();
 
   useEffect(() => {
@@ -50,12 +50,57 @@ export default function RootLayout({
     }
   }
 
+  const handleMenuClick = () => {
+    setSidebarOpen((prev) => !prev);
+  };
+
+  const handleSidebarItemClick = async (event: string) => {
+    await router.push(`/student/${event}`);
+    setSidebarOpen(false);
+  };
   return (
     <html lang="en">
       <body className={inter.className}>
+        <header className="bg-gray-800 py-4 px-6 flex justify-between items-center text-white">
+          <div>
+            <h1 className="text-xl font-bold">Your Site Name</h1>
+          </div>
+          <button
+            className="lg:hidden text-white focus:outline-none"
+            onClick={handleMenuClick}
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {isSidebarOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16m-7 6h7"
+                />
+              )}
+            </svg>
+          </button>
+        </header>
         <main className="bg-gray-100 dark:bg-gray-800 h-screen overflow-hidden relative">
           <div className="flex items-start justify-between">
-            <div className="h-screen hidden lg:block shadow-lg relative w-80 bg-white dark:bg-gray-700">
+            <aside
+              className={`h-screen absolute w-full z-20  xl:w-80 bg-white dark:bg-gray-700 lg:block ${
+                isSidebarOpen ? "block" : "hidden"
+              }`}
+            >
               <div className="">
                 <nav className="m-0 ">
                   <div>
@@ -208,7 +253,7 @@ export default function RootLayout({
                   </div>
                 </nav>
               </div>
-            </div>
+            </aside>
             <div className="flex flex-col w-full ">
               <div className="w-full h-full overflow-y-auto scroll-m-0 whitespace-break-spaces">
                 {children}
