@@ -81,7 +81,9 @@ export default function Home() {
         }
         className=" p-4 m-5 text-3xl  text-white"
       >
-        Go to report page
+        <button className="bg-blue-500 text-white px-4 py-2 rounded-md sm:w-1/2 w-full">
+          Go to report page
+        </button>
       </a>
       <Question onSelectOption={handleAnswer} questions={questions}></Question>
     </>

@@ -27,7 +27,7 @@ const questions = [
   },
 ];
 
-const YourComponent = () => {
+export default function () {
   const searchParams = useSearchParams();
   const dataString = searchParams.get("data");
   const [data, setData] = useState<AnswerProp[]>([]);
@@ -46,29 +46,27 @@ const YourComponent = () => {
   }, [dataString]);
 
   return (
-    <div className="bg-gray-800 text-white p-4">
-      <h1 className="text-3xl font-bold mb-4">Hello</h1>
-      {data.length > 0 ? (
-        <ul className="space-y-4">
-          {data.map((item, index) => (
-            <li key={index}>
-              <strong>Question:</strong> {item.question}
-              <br />
-              <strong>Options:</strong> {questions[index].options.join(", ")}
-              {/* Get options from the questions array */}
-              <br />
-              <strong>Answer:</strong> {item.answer}
-              <br />
-              <strong>Correct Answer:</strong> {item.correctAnswer}
-              <br />
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className="text-lg">No data found.</p>
-      )}
+    <div className="flex flex-col items-start p-8 pl-0 pb-0 bg-white">
+      <h1 className="text-3xl font-bold mb-4 w-full text-center">
+        Report Card
+      </h1>
+      <div className="w-full">
+        {data.map((item, index) => (
+          <div
+            key={index}
+            className={index % 2 === 0 ? "bg-gray-200 p-4" : "bg-gray-400 p-4"}
+          >
+            <div className="text-xl font-bold mb-2">Question:</div>
+            <div className="ml-4">{item.question}</div>
+            <div className="text-xl font-bold mt-4 mb-2">Options:</div>
+            <div className="ml-4">{questions[index].options.join(", ")}</div>
+            <div className="text-xl font-bold mt-4">Answer:</div>
+            <div className="ml-4">{item.answer}</div>
+            <div className="text-xl font-bold mt-4">Correct Answer:</div>
+            <div className="ml-4">{item.correctAnswer}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
-};
-
-export default YourComponent;
+}

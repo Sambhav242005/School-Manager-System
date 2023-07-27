@@ -51,11 +51,11 @@ const TestSeries: React.FC<TestProps> = ({ questions, onSelectOption }) => {
       ) : currentQuestion === questions.length ? (
         <>
           <button
-            className="bg-blue-500 text-white px-4 py-2 rounded-md"
-            onClick={() => handleStart("down")}
-          >
-            Submit Answer
-          </button>
+              className="bg-blue-500 text-white px-4 py-2 rounded-md sm:w-1/2 w-full"
+              onClick={() => handleStart("down")}
+            >
+              Pervise Question
+            </button>
         </>
       ) : (
         <>
