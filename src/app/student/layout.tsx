@@ -63,7 +63,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <header className="bg-gray-800 py-4 px-6 flex justify-between items-center text-white">
           <div>
-            <h1 className="text-xl font-bold">Your Site Name</h1>
+            <h1 className="text-xl font-bold">
+              Artificial intelligence school
+            </h1>
           </div>
           <button
             className="lg:hidden text-white focus:outline-none"
@@ -97,7 +99,7 @@ export default function RootLayout({
         <main className="bg-gray-100 dark:bg-gray-800 h-screen overflow-hidden relative">
           <div className="flex items-start justify-between">
             <aside
-              className={`h-screen absolute w-full z-20  xl:w-80 bg-white dark:bg-gray-700 lg:block ${
+              className={`h-screen absolute xl:static w-full z-20  xl:w-80 bg-white dark:bg-gray-700 lg:block ${
                 isSidebarOpen ? "block" : "hidden"
               }`}
             >
