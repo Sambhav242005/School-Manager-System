@@ -1,17 +1,14 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 export default function () {
   const [dataForm, setDataForm] = useState({
-    name: "",
     number: "",
-    address: "",
-    email: "",
-    gender: "",
     password: "",
   });
+  const [rememberMe, setRememberMe] = useState(false);
 
   const handleInput = (e: { target: { name: any; value: any } }) => {
     const fieldName = e.target.name;
@@ -42,13 +39,20 @@ export default function () {
         },
       }).then(() => {
         setDataForm({
-          name: "",
           number: "",
-          address: "",
-          email: "",
-          gender: "",
           password: "",
         });
+
+        if (rememberMe) {
+          // Save login information in local storage
+          const loginInfo = JSON.stringify({
+            number: dataForm.number,
+            password: dataForm.password,
+          });
+          localStorage.setItem("loginInfo", loginInfo);
+        }
+
+        setRememberMe(false);
         const router = useRouter();
 
         router.push("/login");
@@ -57,6 +61,9 @@ export default function () {
       alert("Please Try Again Later there is server error ");
       console.log(error);
     }
+  };
+  const handleRememberMe = (e: { target: { checked: boolean } }) => {
+    setRememberMe(e.target.checked);
   };
 
   return (
@@ -67,7 +74,7 @@ export default function () {
             <div className="rounded-t mb-0 px-6 py-6">
               <div className="text-center mb-3">
                 <h6 className="text-blue-500 text-sm font-bold">
-                  Parents Registration Form
+                  Teachers Login Form
                 </h6>
               </div>
               <div className="btn-wrapper text-center"></div>
@@ -75,84 +82,18 @@ export default function () {
             </div>
             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
               <form method="POST" onSubmit={submitForm}>
-                <div id="name" className="relative w-full mb-3">
-                  <label className="block uppercase text-blue-600 text-xs font-bold mb-2">
-                    Full Name
-                  </label>
-                  <input
-                    value={dataForm.name}
-                    onChange={handleInput}
-                    type="text"
-                    className="border-0 px-3 py-3 placeholder-blue-300 text-blue-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="Name"
-                  />
-                </div>
                 <div id="phone" className="relative w-full mb-3">
                   <label className="block uppercase text-blue-600 text-xs font-bold mb-2">
                     Phone No
                   </label>
                   <input
-                    value={dataForm.number}
                     onChange={handleInput}
                     type="tel"
                     className="border-0 px-3 py-3 placeholder-blue-300 text-blue-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     placeholder="Phone No"
                   />
                 </div>
-                <div id="address" className="relative w-full mb-3">
-                  <label className="block uppercase text-blue-600 text-xs font-bold mb-2">
-                    Address
-                  </label>
-                  <input
-                    value={dataForm.address}
-                    onChange={handleInput}
-                    type="text"
-                    className="border-0 px-3 py-3 placeholder-blue-300 text-blue-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="Address"
-                  />
-                </div>
 
-                <div id="gender" className="relative w-full mb-3">
-                  <label className="block uppercase text-blue-600 text-xs font-bold mb-2">
-                    Gender
-                  </label>
-                  <div className="flex flex-wrap">
-                    <label className="flex items-center cursor-pointer m-2">
-                      <input
-                        onChange={handleInput}
-                        className="scale-125 mr-2 cursor-pointer"
-                        type="radio"
-                        name="gender"
-                        value={dataForm.gender}
-                        checked
-                      />
-                      <div className="title -mt-1">male</div>
-                    </label>
-
-                    <label className="flex items-center cursor-pointer m-2">
-                      <input
-                        onChange={handleInput}
-                        className="scale-125 mr-2 cursor-pointer"
-                        type="radio"
-                        name="gender"
-                        value={dataForm.gender}
-                      />
-                      <div className="title -mt-1">female</div>
-                    </label>
-                  </div>
-                </div>
-                <div id="email" className="relative w-full mb-3">
-                  <label className="block uppercase text-blue-600 text-xs font-bold mb-2">
-                    Email
-                  </label>
-                  <input
-                    onChange={handleInput}
-                    value={dataForm.email}
-                    type="email"
-                    className="border-0 px-3 py-3 placeholder-blue-300 text-blue-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="Email"
-                  />
-                </div>
                 <div id="password" className="relative w-full mb-3">
                   <label className="block uppercase text-blue-600 text-xs font-bold mb-2">
                     Password
@@ -165,11 +106,23 @@ export default function () {
                     placeholder="Password"
                   />
                 </div>
-
+                <div id="remember-me">
+                  <label className="inline-flex items-center cursor-pointer">
+                    <input
+                      onChange={handleRememberMe}
+                      type="checkbox"
+                      className="form-checkbox border-0 rounded text-blue-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
+                      checked={rememberMe}
+                    />
+                    <span className="ml-2 text-sm font-semibold text-blue-600">
+                      Remember Me
+                    </span>
+                  </label>
+                </div>
                 <div id="submit-button" className="text-center mt-6">
                   <button
                     className="bg-blue-800 text-white active:bg-blue-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                    type="submit"
+                    type="button"
                   >
                     Sign Up
                   </button>

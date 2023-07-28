@@ -28,7 +28,6 @@ export default function () {
       event_theme: "green",
     },
   ]);
-  console.log(events);
 
   return (
     <>

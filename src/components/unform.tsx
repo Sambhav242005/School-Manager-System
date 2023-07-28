@@ -1,7 +1,7 @@
 export default function () {
   return (
     <>
-      <div className="font-serif ">
+      <div className="font-serif " id="uniform">
         <div className=" w-full p-8 pr-20 text-lg">
           <h2 className="text-3xl font-thin p-5 pl-0">School Uniform</h2>
           <p>
