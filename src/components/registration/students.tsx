@@ -1,6 +1,7 @@
 "use client";
 
-import { ChangeEvent, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function () {
   const [dataForm, setDataForm] = useState({
@@ -31,23 +32,32 @@ export default function () {
     console.log(dataForm);
 
     // POST the data to the URL of the form
-    // fetch(formURL, {
-    //   method: "POST",
-    //   body: data,
-    //   headers: {
-    //     accept: "application/json",
-    //   },
-    // }).then(() => {
-    //   setDataForm({
-    //     name: "",
-    //     rollno: "",
-    //     dob: "",
-    //     class: "",
-    //     section: "",
-    //     gender: "",
-    //     password: "",
-    //   });
-    // });
+    try {
+      fetch(formURL, {
+        method: "POST",
+        body: JSON.stringify(dataForm), // Convert to JSON string
+        headers: {
+          "Content-Type": "application/json", // Set the content type to JSON
+          accept: "application/json",
+        },
+      }).then(() => {
+        setDataForm({
+          name: "",
+          rollno: "",
+          dob: "",
+          class: "",
+          section: "",
+          gender: "",
+          password: "",
+        });
+        const router = useRouter();
+
+        router.push("/login");
+      });
+    } catch (error) {
+      alert("Please Try Again Later there is server error ");
+      console.log(error);
+    }
   };
 
   return (
@@ -207,20 +217,7 @@ export default function () {
                     placeholder="Password"
                   />
                 </div>
-                <div id="rememder-me">
-                  <label className="inline-flex items-center cursor-pointer">
-                    <input
-                      name="me"
-                      onChange={handleInput}
-                      id="customCheckLogin"
-                      type="checkbox"
-                      className="form-checkbox border-0 rounded text-blue-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
-                    />
-                    <span className="ml-2 text-sm font-semibold text-blue-600">
-                      Remember Me
-                    </span>
-                  </label>
-                </div>
+
                 <div id="submit-button" className="text-center mt-6">
                   <button
                     className="bg-blue-800 text-white active:bg-blue-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
