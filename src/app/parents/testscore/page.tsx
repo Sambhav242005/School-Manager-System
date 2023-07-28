@@ -5,7 +5,7 @@ export default function(){
     
     <div className="relative block md:flex items-center">
       <div className="w-full md:w-1/2 relative z-1 bg-gray-100 rounded shadow-lg overflow-hidden">
-        <div className="text-lg font-medium text-green-500 uppercase p-8 text-center border-b border-gray-200 tracking-wide">Pay as you go</div>
+        <div className="text-lg font-large text-Black-500 uppercase p-8 text-center border-b border-gray-800 tracking-wide">Test Ratio</div>
         <div className="block sm:flex md:block lg:flex items-center justify-center">
           <div className="mt-8 sm:m-8 md:m-0 md:mt-8 lg:m-8 text-center">
             <div className="inline-flex items-center">
@@ -13,7 +13,7 @@ export default function(){
               <span className="text-xl text-gray-600 ml-2">+</span>
               <span className="text-xl ml-2">20p</span>
             </div>
-            <span className="block text-sm text-gray-600 mt-2">for European cards</span>
+            <span className="block text-sm text-black-800 mt-2">Test Done</span>
           </div>
           <div className="mt-4 mb-8 sm:m-8 md:m-0 md:mt-4 md:mb-8 lg:m-8 text-center">
             <div className="inline-flex items-center">
@@ -21,53 +21,49 @@ export default function(){
               <span className="text-xl text-gray-600 ml-2">+</span>
               <span className="text-xl ml-2">20p</span>
             </div>
-            <span className="block text-sm text-gray-600 mt-2">for non-European cards</span>
+            <span className="block text-sm text-black-800 mt-2">Test Pending</span>
           </div>
         </div>
         <div className="flex justify-center mt-3">
           <ul>
             <li className="flex items-center">
-              <div className="bg-green-200 rounded-full p-2 fill-current text-green-700">
+              <div className="bg-gray-500 rounded-full p-2 fill-current text-green-500">
               </div>
-              <span className="text-gray-700 text-lg ml-3">No setup, monthly, or hidden fees</span>
+              <span className="text-gray-800 text-lg ml-3">Weekly Test Done / Pending</span>
             </li>
             <li className="flex items-center mt-3">
-              <div className="bg-green-200 rounded-full p-2 fill-current text-green-700">
+              <div className="bg-gray-500 rounded-full p-2 fill-current text-green-500">
               </div>
-              <span className="text-gray-700 text-lg ml-3">Pay only for what you use</span>
+              <span className="text-gray-800 text-lg ml-3">Monthly Test Done / Pending</span>
             </li>
             <li className="flex items-center mt-3">
-              <div className="bg-green-200 rounded-full p-2 fill-current text-green-700">
+              <div className="bg-gray-500 rounded-full p-2 fill-current text-green-500">
               </div>
-              <span className="text-gray-700 text-lg ml-3">Real-time fee reporting</span>
+              <span className="text-gray-800 text-lg ml-3">Yearly Test Done / Pending</span>
             </li>
           </ul>
         </div>
-        <a className="block flex items-center justify-center bg-gray-200 hover:bg-gray-300 p-8 text-md font-semibold text-gray-800 uppercase mt-16" href="#">
-          <span>Create account</span>
-          <span className="font-medium text-gray-700 ml-2">➔</span>
-        </a>
+        
       </div>
       <div className="w-full md:w-1/2 relative z-0 px-8 md:px-0 md:py-16">
         <div className="bg-blue-900 text-white rounded-b md:rounded-b-none md:rounded-r shadow-lg overflow-hidden">
-          <div className="text-lg font-medium uppercase p-8 text-center border-b border-blue-800 tracking-wide">Enterprise</div>
-          <div className="text-center text-sm sm:text-md max-w-sm mx-auto mt-8 text-blue-200 px-8 lg:px-0">
-            Stripe offers everything needed to run an online business at scale. Get in touch for details.
+          <div className="text-lg font-medium uppercase p-8 text-center border-b border-white-500 tracking-wide">UDATES</div>
+          <div className="text-center text-lg sm:text-md max-w-sm mx-auto mt-8 text-white-500 px-8 lg:px-0">
+            Fees Status
           </div>
-          <div className="mt-8 border border-blue-800 mx-8 lg:mx-16 flex flex-wrap">
-            <div className="flex items-center justify-center w-1/2 text-center p-4 border-r border-b border-blue-800">Account management</div>
-            <div className="flex items-center justify-center w-1/2 text-center p-4 border-b border-blue-800">Volume discounts</div>
-            <div className="flex items-center justify-center w-1/2 text-center p-4 border-r border-blue-800">Migration assistance</div>
-            <div className="flex items-center justify-center w-1/2 text-center p-4">Dedicated support</div>
+          <div className="mt-8 border border-white-500 mx-8 lg:mx-16 flex flex-wrap">
+            <div className="flex items-center justify-center w-1/2 text-center p-4 border-r border-b border-white-500">Fees Paid</div>
+            <div className="flex items-center justify-center w-1/2 text-center p-4 border-b border-white-500">Fees Unpaid</div>
+            <div className="flex items-center justify-center w-1/2 text-center p-4 border-r border-white-500">Extra Classes</div>
+            <div className="flex items-center justify-center w-1/2 text-center p-4">Doubt Sessions</div>
           </div>
-          <a className="block flex items-center justify-center bg-blue-800 hover:bg-blue-700 p-8 text-md font-semibold text-gray-300 uppercase mt-8" href="#">
-            <span>Contact sales</span>
-            <span className="font-medium text-gray-300 ml-2">➔</span>
+          <a className="block flex items-center justify-center p-6 text-md font-semibold text-white-300 uppercase mt-8" href="#">
+            <span>Contact Teacher</span>
+            
           </a>
         </div>
       </div>
     </div>
-      
     
   </div>
     </>
