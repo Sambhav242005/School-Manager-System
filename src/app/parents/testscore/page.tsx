@@ -49,13 +49,13 @@ export default function(){
         <div className="bg-gray-600 text-white rounded-b md:rounded-b-none md:rounded-r shadow-lg overflow-hidden">
           <div className="text-lg font-medium uppercase p-10 text-center">Performance</div>
           <div className="mt-8 border border-white-500 mx-8 lg:mx-16 flex flex-wrap">
-            <a href="#" className="flex items-center justify-center w-1/2 text-center p-6 border-b border-white-500 hover:bg-gray-900">Test Done</a><br />
+            <a href="#" className="flex items-center justify-center w-1/2 text-center p-6 border-r border-b border-white-500 hover:bg-gray-900">Test Done</a><br />
             <a href="#" className="flex items-center justify-center w-1/2 text-center p-6 border-b border-white-500 hover:bg-gray-900">Pending Test</a><br />
-            <a href="#" className="flex items-center justify-center w-1/2 text-center p-6 border-white-500 hover:bg-gray-900">Extra Classes</a>
+            <a href="#" className="flex items-center justify-center w-1/2 text-center p-6 border-r border-white-500 hover:bg-gray-900">Extra Classes</a>
             <a href="#" className="flex items-center justify-center w-1/2 text-center p-6 border-white-500 hover:bg-gray-900">Doubt Sessions</a>
 
           </div>
-          <a className="block flex items-center justify-center p-6 text-md font-semibold text-white-300 uppercase mt-8 hover:bg-gray-900" href="#">
+          <a href="#" className="block flex items-center justify-center p-6 text-md font-semibold text-white-300 uppercase mt-8 hover:bg-gray-900">
             <span>Contact Teacher</span>
             
           </a>
