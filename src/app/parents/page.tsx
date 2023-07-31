@@ -23,8 +23,8 @@ export default function(){
         <div className="bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300"><a href="parents/timetable">Time Table</a></div>
         <div className="bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300"><a href="parents/testscore">Test Upcoming / Done / Score </a></div>
         <div className="bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300"><a href="parents/result"> Report Card</a></div>
-        <div className="bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300"> PTM</div>
-        <div className="bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300"> Upcoming Events</div>
+        <div className="bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300"><a href="parents/ptm"> P.T.M</a></div>
+        <div className="bg-gray-900 text-white p-2 rounded mt-2 cursor-pointer hover:bg-gray-700 hover:text-blue-300"><a href="parents/schlevents"> Upcoming Events</a></div>
       </div>
 
 
