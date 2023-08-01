@@ -8,9 +8,18 @@ export default function(){
       <a href="#" className="bg-gray-900 hover:bg-gray-700 p-2 rounded cursor-pointer ml-2">Assignments</a>
       <a href="#" className="bg-gray-900 hover:bg-gray-700 p-2 rounded cursor-pointer ml-5">Scheduled Classes</a>
       <a href="#" className="bg-gray-900 hover:bg-gray-700 p-2 rounded cursor-pointer ml-5">Query</a>
-      <a href="#" className="bg-gray-900 hover:bg-gray-700 p-2 rounded cursor-pointer ml-5">Student</a>
+      
+      <div className="bg-gray-900 hover:bg-gray-700 p-2 rounded cursor-pointer ml-5">
+              <label htmlFor="student">Student</label>
+              <select name="student" id="student" >
+                <option value="1">Child 1</option>
+                <option value="2">Child 2</option>
+              </select>
+            </div>
+     </div>
+        
 
-    </div>
+    
   </nav>
   
 </header>
