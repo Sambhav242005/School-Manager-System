@@ -13,7 +13,7 @@ export default function () {
     gender: "",
     password: "",
   });
-  const handleInput = (e: { target: { name: any; value: any } }) => {
+  const handleInput = (e: { target: { name: any; value: any; }; }) => {
     const fieldName = e.target.name;
     const fieldValue = e.target.value;
 
@@ -23,7 +23,7 @@ export default function () {
     }));
   };
 
-  const submitForm = (e: any) => {
+  const submitForm = async (e: any) => {
     // We don't want the page to refresh
     e.preventDefault();
 
@@ -33,14 +33,15 @@ export default function () {
 
     // POST the data to the URL of the form
     try {
-      fetch(formURL, {
+       fetch(formURL, {
         method: "POST",
         body: JSON.stringify(dataForm), // Convert to JSON string
         headers: {
           "Content-Type": "application/json", // Set the content type to JSON
           accept: "application/json",
         },
-      }).then(() => {
+      })
+      .then(()=>{
         setDataForm({
           name: "",
           rollno: "",
@@ -50,15 +51,16 @@ export default function () {
           gender: "",
           password: "",
         });
-        const router = useRouter();
-
-        router.push("/login");
+      const router = useRouter();
+       router.push("/login");
+      
       });
     } catch (error) {
       alert("Please Try Again Later there is server error ");
       console.log(error);
     }
   };
+
 
   return (
     <>
@@ -181,12 +183,11 @@ export default function () {
                     <label className="flex items-center cursor-pointer m-2">
                       <input
                         onChange={handleInput}
-                        value={dataForm.gender}
+                        value="male"
                         className="scale-125 mr-2 cursor-pointer"
                         type="radio"
                         name="gender"
-                        defaultValue="m"
-                        checked
+                        checked={dataForm.gender==="male"}
                       />
                       <div className="title -mt-1">male</div>
                     </label>
@@ -194,11 +195,11 @@ export default function () {
                     <label className="flex items-center cursor-pointer m-2">
                       <input
                         onChange={handleInput}
-                        value={dataForm.gender}
+                        value="female"
                         className="scale-125 mr-2 cursor-pointer"
                         type="radio"
                         name="gender"
-                        defaultValue="f"
+                        checked={dataForm.gender==="female"}
                       />
                       <div className="title -mt-1">female</div>
                     </label>
@@ -209,6 +210,7 @@ export default function () {
                     Password
                   </label>
                   <input
+                   required
                     name="password"
                     onChange={handleInput}
                     value={dataForm.password}

@@ -28,6 +28,7 @@ export default function () {
     e.preventDefault();
 
     const formURL = e.target.action;
+    //const formURL = "http://localhost:3001/parent/users"; // Replace with your backend API URL
 
     console.log(dataForm);
 
@@ -80,8 +81,10 @@ export default function () {
                     Full Name
                   </label>
                   <input
-                    value={dataForm.name}
+                    required
+                    name="name"
                     onChange={handleInput}
+                    value={dataForm.name}
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blue-300 text-blue-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     placeholder="Name"
@@ -92,6 +95,8 @@ export default function () {
                     Phone No
                   </label>
                   <input
+                    required
+                    name="number"
                     value={dataForm.number}
                     onChange={handleInput}
                     type="tel"
@@ -104,6 +109,8 @@ export default function () {
                     Address
                   </label>
                   <input
+                    required 
+                    name="address"
                     value={dataForm.address}
                     onChange={handleInput}
                     type="text"
@@ -123,9 +130,10 @@ export default function () {
                         className="scale-125 mr-2 cursor-pointer"
                         type="radio"
                         name="gender"
-                        value={dataForm.gender}
-                        checked
+                        value="male" 
+                        checked={dataForm.gender==="male"}
                       />
+
                       <div className="title -mt-1">male</div>
                     </label>
 
@@ -135,7 +143,8 @@ export default function () {
                         className="scale-125 mr-2 cursor-pointer"
                         type="radio"
                         name="gender"
-                        value={dataForm.gender}
+                        value="female"
+                       checked= {dataForm.gender==="female"}
                       />
                       <div className="title -mt-1">female</div>
                     </label>
@@ -146,6 +155,8 @@ export default function () {
                     Email
                   </label>
                   <input
+                    required
+                    name="email"
                     onChange={handleInput}
                     value={dataForm.email}
                     type="email"
@@ -158,6 +169,8 @@ export default function () {
                     Password
                   </label>
                   <input
+                  required
+                   name="password"
                     value={dataForm.password}
                     onChange={handleInput}
                     type="password"

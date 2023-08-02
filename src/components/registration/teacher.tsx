@@ -67,7 +67,7 @@ export default function () {
             <div className="rounded-t mb-0 px-6 py-6">
               <div className="text-center mb-3">
                 <h6 className="text-blue-500 text-sm font-bold">
-                  Parents Registration Form
+                  Teachers Registration Form
                 </h6>
               </div>
               <div className="btn-wrapper text-center"></div>
@@ -80,6 +80,8 @@ export default function () {
                     Full Name
                   </label>
                   <input
+                   required 
+                   name="name"
                     value={dataForm.name}
                     onChange={handleInput}
                     type="text"
@@ -92,6 +94,8 @@ export default function () {
                     Phone No
                   </label>
                   <input
+                   required
+                   name="number"
                     value={dataForm.number}
                     onChange={handleInput}
                     type="tel"
@@ -104,6 +108,8 @@ export default function () {
                     Address
                   </label>
                   <input
+                   required
+                    name="address"
                     value={dataForm.address}
                     onChange={handleInput}
                     type="text"
@@ -123,8 +129,8 @@ export default function () {
                         className="scale-125 mr-2 cursor-pointer"
                         type="radio"
                         name="gender"
-                        value={dataForm.gender}
-                        checked
+                        value="male"
+                        checked={dataForm.gender==="male"}
                       />
                       <div className="title -mt-1">male</div>
                     </label>
@@ -135,7 +141,8 @@ export default function () {
                         className="scale-125 mr-2 cursor-pointer"
                         type="radio"
                         name="gender"
-                        value={dataForm.gender}
+                        value="female"
+                        checked={dataForm.gender==="female"}
                       />
                       <div className="title -mt-1">female</div>
                     </label>
@@ -146,6 +153,8 @@ export default function () {
                     Email
                   </label>
                   <input
+                    required
+                    name="email"
                     onChange={handleInput}
                     value={dataForm.email}
                     type="email"
@@ -158,6 +167,8 @@ export default function () {
                     Password
                   </label>
                   <input
+                   required
+                   name="password"
                     value={dataForm.password}
                     onChange={handleInput}
                     type="password"

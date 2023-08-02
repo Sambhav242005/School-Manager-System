@@ -1,5 +1,4 @@
 module.exports = {
-    output: 'export',
     experimental: {
         images: {
             unoptimized: true,
