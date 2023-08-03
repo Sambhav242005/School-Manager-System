@@ -1,5 +1,6 @@
 "use client";
 
+import { accessSync } from "fs";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 
@@ -20,7 +21,7 @@ export default function () {
     }));
   };
 
-  const submitForm = (e: any) => {
+  const submitForm = async(e: any) => {
     // We don't want the page to refresh
     e.preventDefault();
 
@@ -30,7 +31,7 @@ export default function () {
 
     // POST the data to the URL of the form
     try {
-      fetch(formURL, {
+      const response= await fetch('/login', {
         method: "POST",
         body: JSON.stringify(dataForm), // Convert to JSON string
         headers: {
