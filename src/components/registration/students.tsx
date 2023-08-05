@@ -1,5 +1,7 @@
 "use client";
 
+import axios from "axios";
+import { log } from "console";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -27,34 +29,37 @@ export default function () {
     // We don't want the page to refresh
     e.preventDefault();
 
-    const formURL = e.target.action;
+    const formURL = "http://localhost:3001/student/user";
 
     console.log(dataForm);
 
     // POST the data to the URL of the form
     try {
-       fetch(formURL, {
-        method: "POST",
-        body: JSON.stringify(dataForm), // Convert to JSON string
-        headers: {
-          "Content-Type": "application/json", // Set the content type to JSON
-          accept: "application/json",
-        },
-      })
-      .then(()=>{
-        setDataForm({
-          name: "",
-          rollno: "",
-          dob: "",
-          class: "",
-          section: "",
-          gender: "",
-          password: "",
-        });
-      const router = useRouter();
-       router.push("/login");
+      //  fetch(formURL, {
+      //   method: "POST",
+      //   body: JSON.stringify(dataForm), // Convert to JSON string
+      //   headers: {
+      //     "Content-Type": "application/json", // Set the content type to JSON
+      //     accept: "application/json",
+      //   },
+      // })
+      // .then(()=>{
+      //   // //setDataForm({
+        //   name: "",
+        //   rollno: "",
+        //   dob: "",
+        //   class: "",
+        //   section: "",
+        //   gender: "",
+        //   password: "",
+        // });
+     // const router = useRouter();
+       //router.push("/login");
       
-      });
+     // });
+     const response= await axios.post(formURL,FormData)
+     console.log(response);
+     
     } catch (error) {
       alert("Please Try Again Later there is server error ");
       console.log(error);

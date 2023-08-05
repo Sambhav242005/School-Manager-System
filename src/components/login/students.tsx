@@ -24,7 +24,7 @@ export default function () {
     // We don't want the page to refresh
     e.preventDefault();
 
-    const formURL = "http://localhost:3001/student";
+    const formURL = "http://localhost:3001/student/user";
 
     console.log(dataForm);
 
@@ -42,7 +42,7 @@ export default function () {
           rollno: "",
           dob: "",
         });
-        const router = useRouter();
+        //const router = useRouter();
         if (rememberMe) {
           // Save login information in local storage
           const loginInfo = JSON.stringify({
@@ -53,7 +53,7 @@ export default function () {
         }
 
         setRememberMe(false);
-        router.push("/login");
+       // router.push("/login");
       });
     } catch (error) {
       alert("Please Try Again Later there is server error ");
