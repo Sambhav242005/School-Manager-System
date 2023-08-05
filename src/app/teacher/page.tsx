@@ -6,7 +6,7 @@ export default function(){
   <nav className="flex items-center">
     <div className="text-white text-sm hidden sm:block ">
       <a href="teacher/assignments" className="bg-gray-900 hover:bg-gray-700 p-2 rounded cursor-pointer ml-1 ">Manage Assignments</a>
-      <a href="#" className="bg-gray-900 hover:bg-gray-700 p-2 rounded cursor-pointer ml-5 ">Scheduled Classes</a>
+      <a href="teacher/scheduleclasses" className="bg-gray-900 hover:bg-gray-700 p-2 rounded cursor-pointer ml-5 ">Scheduled Classes</a>
       <a href="#" className="bg-gray-900 hover:bg-gray-700 p-2 rounded cursor-pointer ml-5 ">Important Anouncement</a>
       <a href="#" className="bg-gray-900 hover:bg-gray-700 p-2 rounded cursor-pointer ml-5 ">Resource Sharing</a>
       
