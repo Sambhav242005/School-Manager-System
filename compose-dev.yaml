@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   app:
-    image: 'bun:latest' # replace with the appropriate Bun.js image
+    image: 'oven/bun' # replace with the appropriate Bun.js image
     volumes:
       - './app:/app' # replace './app' with the path to your Bun.js application
     working_dir: '/app'
