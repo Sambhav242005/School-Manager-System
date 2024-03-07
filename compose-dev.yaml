@@ -5,7 +5,7 @@ services:
     volumes:
       - './app:/app' # replace './app' with the path to your Bun.js application
     working_dir: '/app'
-    command: 'bun start' # replace with the appropriate command to start your application
+    command: 'bun install' # replace with the appropriate command to start your application
     ports:
       - '3000:3000' # replace with the appropriate port for your application
     depends_on:
