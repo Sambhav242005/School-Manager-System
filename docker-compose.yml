@@ -1,11 +1,9 @@
 version: '3.1'
 services:
   app:
-    image: 'oven/bun' # replace with the appropriate Bun.js image
-    volumes:
-      - './app:/app' # replace './app' with the path to your Bun.js application
-    working_dir: '/app'
-    command: 'bun install' # replace with the appropriate command to start your application
+    build:
+      context: . # replace with the path to your Bun.js application
+      dockerfile: Dockerfile # replace with the path to your Dockerfile
     ports:
       - '3000:3000' # replace with the appropriate port for your application
     depends_on:
