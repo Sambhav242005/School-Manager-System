@@ -1,12 +1,23 @@
+version: '3.1'
 services:
   app:
-    entrypoint:
-    - sleep
-    - infinity
-    image: docker/dev-environments-javascript:stable-1
-    init: true
+    image: 'bun:latest' # replace with the appropriate Bun.js image
     volumes:
-    - type: bind
-      source: /var/run/docker.sock
-      target: /var/run/docker.sock
+      - './app:/app' # replace './app' with the path to your Bun.js application
+    working_dir: '/app'
+    command: 'bun start' # replace with the appropriate command to start your application
+    ports:
+      - '3000:3000' # replace with the appropriate port for your application
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=mongodb://db:27017/mydatabase # replace with your database URL
+      - NEXTAUTH_SECRET=ndANBdfbnaf
+      - NEXTAUTH_URL=http://localhost:3000
 
+  db:
+    image: 'mongo:latest' # replace with the appropriate MongoDB image
+    volumes:
+      - './mongo-data:/data/db' # replace './mongo-data' with the path where you want to store MongoDB data
+    ports:
+      - '27017:27017' # replace with the appropriate port for MongoDB
