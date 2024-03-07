@@ -1,5 +1,5 @@
-# Step 1: Use a Node.js image as the base image
-FROM node:14-alpine as build
+# Step 1: Use a Bun.js image as the base image
+FROM oven/bun:1 as build
 
 # Step 2: Set the working directory inside the container
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 
 # Step 4: Install the project dependencies
-RUN npm install
+RUN bun install
 
 # Step 5: Copy the rest of the application files to the container
 COPY . .
@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Step 7: Use a smaller Node.js image for production
-FROM node:14-alpine as production
+FROM oven/bun:1 as production
 
 # Step 8: Set the working directory inside the production container
 WORKDIR /app
@@ -26,7 +26,7 @@ WORKDIR /app
 COPY --from=build /app/.next ./.next
 
 # Step 10: Install only production dependencies
-RUN npm install --only=production
+RUN bun install --only=production
 
 # Step 11: Start the Next.js application
-CMD ["npm", "start"]
+CMD ["bun", "start"]
