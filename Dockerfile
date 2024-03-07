@@ -14,7 +14,7 @@ RUN bun install
 COPY . .
 
 # Step 6: Build the Next.js application
-RUN npm run build
+RUN bun run build
 
 # Step 7: Use a smaller Node.js image for production
 FROM oven/bun:1 as production
