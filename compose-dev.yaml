@@ -1,26 +1,17 @@
 version: '3.1'
 services:
   app:
-    image: 'oven/bun' # use the oven/bun image
-    volumes:
-      - '/app/node_modules'
-      - './:/app' # mount the local directory to /app in the container
-    command: 'bun start' # replace with the appropriate command to start your application
+    build:
+      context: . # replace with the path to your Bun.js application
+      dockerfile: Dockerfile # replace with the path to your Dockerfile
     ports:
       - '3000:3000' # replace with the appropriate port for your application
     depends_on:
       - db
     environment:
-      - NODE_ENV=development
       - DATABASE_URL=mongodb://db:27017/mydatabase # replace with your database URL
       - NEXTAUTH_SECRET=ndANBdfbnaf
       - NEXTAUTH_URL=http://localhost:3000
-    entrypoint: [ "sh", "-c" ] # replace the default entrypoint with sh -c
-    # copy all local files into the container and start the application
-    command: |
-      cp -R /app/* . &&
-      npm install &&
-      bun start
 
   db:
     image: 'mongo:latest' # replace with the appropriate MongoDB image
