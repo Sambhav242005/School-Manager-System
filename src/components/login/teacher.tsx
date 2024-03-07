@@ -84,7 +84,7 @@ export default function () {
               <form method="POST" onSubmit={submitForm}>
                 <div id="phone" className="relative w-full mb-3">
                   <label className="block uppercase text-blue-600 text-xs font-bold mb-2">
-                    Phone No
+                    Teacher ID
                   </label>
                   <input
                     onChange={handleInput}
