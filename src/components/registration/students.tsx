@@ -1,236 +1,270 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
-export default function () {
-  const [dataForm, setDataForm] = useState({
-    name: "",
-    rollno: "",
-    dob: "",
-    class: "",
-    section: "",
-    gender: "",
-    password: "",
-  });
-  const handleInput = (e: { target: { name: any; value: any } }) => {
-    const fieldName = e.target.name;
-    const fieldValue = e.target.value;
+const studentRegistrationSchema = z.object({
+  name: z.string().nonempty("Name is required"),
+  rollno: z.string().nonempty("Roll no is required"),
+  dob: z.string().nonempty("Date of birth is required"),
+  class: z.string().nonempty("Class is required"),
+  section: z.string().nonempty("Section is required"),
+  gender: z.string().nonempty("Gender is required"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
+});
 
-    setDataForm((prevState) => ({
-      ...prevState,
-      [fieldName]: fieldValue,
-    }));
-  };
+const dataForClass:{[key:string]:string[]} = {
+  1: ["A", "B", "C", "D"],
+  2: ["A", "B", "C", "D"],
+  3: ["A", "B", "C", "D"],
+  4: ["A", "B", "C", "D"],
+  5: ["A", "B", "C", "D"],
+  6: ["A", "B", "C", "D"],
+  7: ["A", "B", "C", "D"],
+  8: ["A", "B", "C", "D"],
+  9: ["A", "B", "C", "D"],
+  10: ["A", "B", "C", "D"],
+  11: ["PCM", "PCB", "Comm", "Art"],
+  12: ["PCM", "PCB", "Comm", "Art"],
+};
 
-  const submitForm = (e: any) => {
-    // We don't want the page to refresh
-    e.preventDefault();
+type StudentRegistrationFormData = z.infer<typeof studentRegistrationSchema>;
 
-    const formURL = e.target.action;
+export default function StudentRegistrationForm() {
+  const router = useRouter();
+  const [classValue, setClassValue] = useState< keyof typeof dataForClass>();
+  const [sectionValue, setSectionValue] = useState("");
+  const [availableSections, setAvailableSections] = useState<typeof dataForClass[keyof typeof dataForClass]>([]);
 
-    console.log(dataForm);
-
-    // POST the data to the URL of the form
-    try {
-      fetch(formURL, {
-        method: "POST",
-        body: JSON.stringify(dataForm), // Convert to JSON string
-        headers: {
-          "Content-Type": "application/json", // Set the content type to JSON
-          accept: "application/json",
-        },
-      }).then(() => {
-        setDataForm({
-          name: "",
-          rollno: "",
-          dob: "",
-          class: "",
-          section: "",
-          gender: "",
-          password: "",
-        });
-        const router = useRouter();
-
-        router.push("/login");
-      });
-    } catch (error) {
-      alert("Please Try Again Later there is server error ");
-      console.log(error);
+  const handleClassChange = (e: { target: { value: any; }; }) => {
+    const selectedClass = e.target.value as keyof typeof dataForClass;
+    setClassValue(selectedClass);
+    if (selectedClass in dataForClass) {
+      setAvailableSections(dataForClass[selectedClass]);
     }
+    setSectionValue(""); // Reset section value when class changes
   };
+
+  const handleSectionChange = (e: { target: { value: SetStateAction<string>; }; }) => {
+    setSectionValue(e.target.value);
+  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<StudentRegistrationFormData>({
+    resolver: zodResolver(studentRegistrationSchema),
+  });
+
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      const response = await fetch("/api/student/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        router.push("/login");
+      } else {
+        throw new Error("Registration failed");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Please Try Again Later there is server error ");
+    }
+  });
 
   return (
-    <>
-      <section className="bg-blue-50 w-1/3">
-        <div className="w-full  px-4 mx-auto pt-6">
-          <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blue-200 border-0">
-            <div className="rounded-t mb-0 px-6 py-6">
-              <div className="text-center mb-3">
-                <h6 className="text-blue-500 text-sm font-bold">
-                  Student Registration Form
-                </h6>
+    <section className="bg-blue-50 w-1/3">
+      <div className="w-full px-4 mx-auto pt-6">
+        <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blue-200 border-0">
+          <div className="rounded-t mb-0 px-6 py-6">
+            <div className="text-center mb-3">
+              <h6 className="text-blue-500 text-sm font-bold">
+                Student Registration Form
+              </h6>
+            </div>
+            <div className="btn-wrapper text-center"></div>
+            <hr className="mt-6 border-b-1 border-blue-300" />
+          </div>
+          <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
+            <form onSubmit={onSubmit}>
+              <div id="name" className="relative w-full mb-3">
+                <label
+                  className="block uppercase text-blue-600 text-xs font-bold mb-2"
+                  htmlFor="name"
+                >
+                  Full Name
+                </label>
+                <input
+                  {...register("name")}
+                  type="text"
+                  className="border-0 px-3 py-3 placeholder-blue-300 text-blue-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="Name"
+                />
+                {errors.name && (
+                  <p className="text-red-500 text-xs italic">
+                    {errors.name.message}
+                  </p>
+                )}
               </div>
-              <div className="btn-wrapper text-center"></div>
-              <hr className="mt-6 border-b-1 border-blue-300" />
-            </div>
-            <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-              <form method="POST" onSubmit={submitForm}>
-                <div id="name" className="relative w-full mb-3">
-                  <label className="block uppercase text-blue-600 text-xs font-bold mb-2">
-                    Full Name
-                  </label>
-                  <input
-                    required
-                    name="name"
-                    onChange={handleInput}
-                    value={dataForm.name}
-                    type="text"
-                    className="border-0 px-3 py-3 placeholder-blue-300 text-blue-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="Name"
-                  />
-                </div>
-                <div id="rollno" className="relative w-full mb-3">
-                  <label className="block uppercase text-blue-600 text-xs font-bold mb-2">
-                    Roll No
-                  </label>
-                  <input
-                    required
-                    name="rollno"
-                    onChange={handleInput}
-                    value={dataForm.rollno}
-                    type="text"
-                    className="border-0 px-3 py-3 placeholder-blue-300 text-blue-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="Roll No"
-                  />
-                </div>
-                <div id="dob" className="relative w-full mb-3">
-                  <label className="block uppercase text-blue-600 text-xs font-bold mb-2">
-                    Date Of Brith
-                  </label>
-                  <input
-                    required
-                    name="dob"
-                    onChange={handleInput}
-                    value={dataForm.dob}
-                    type="date"
-                    className="border-0 px-3 py-3 placeholder-blue-300 text-blue-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="Date"
-                  />
-                </div>
-                <div className="flex">
-                  <div id="class" className="relative w-full mb-3">
-                    <label className="block uppercase text-blue-600 text-xs font-bold mb-2">
-                      Class
-                    </label>
-                    <select
-                      onChange={handleInput}
-                      value={dataForm.class}
-                      name="class"
-                      id="id"
-                      defaultValue="no-selected"
-                    >
-                      <option value="no-selected" disabled>
-                        Select Class
-                      </option>
-                      <option value="1">Class 1</option>
-                      <option value="2">Class 2</option>
-                      <option value="3">Class 3</option>
-                      <option value="4">Class 4</option>
-                      <option value="5">Class 5</option>
-                      <option value="6">Class 6</option>
-                      <option value="7">Class 7</option>
-                      <option value="8">Class 8</option>
-                      <option value="9">Class 9</option>
-                      <option value="10">Class 10</option>
-                      <option value="11">Class 11</option>
-                      <option value="12">Class 12</option>
-                    </select>
-                  </div>
-                  <div id="section" className="relative w-full mb-3">
-                    <label className="block uppercase text-blue-600 text-xs font-bold mb-2">
-                      Section
-                    </label>
-                    <select
-                      onChange={handleInput}
-                      value={dataForm.section}
-                      name="section"
-                      id="id"
-                      defaultValue="no-selected"
-                    >
-                      <option value="no-selected" disabled>
-                        Select Section
-                      </option>
-                      <option value="1">A</option>
-                      <option value="B">B</option>
-                      <option value="C">C</option>
-                      <option value="D">D</option>
-                      <option value="E">E</option>
-                      <option value="F">F</option>
-                      <option value="G">G</option>
-                      <option value="H">H</option>
-                    </select>
-                  </div>
-                </div>
+              <div id="rollno" className="relative w-full mb-3">
+                <label
+                  className="block uppercase text-blue-600 text-xs font-bold mb-2"
+                  htmlFor="rollno"
+                >
+                  Roll No
+                </label>
+                <input
+                  {...register("rollno")}
+                  type="text"
+                  className="border-0 px-3 py-3 placeholder-blue-300 text-blue-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="Roll No"
+                />
+                {errors.rollno && (
+                  <p className="text-red-500 text-xs italic">
+                    {errors.rollno.message}
+                  </p>
+                )}
+              </div>
+              <div id="dob" className="relative w-full mb-3">
+                <label
+                  className="block uppercase text-blue-600 text-xs font-bold mb-2"
+                  htmlFor="dob"
+                >
+                  Date Of Birth
+                </label>
+                <input
+                  {...register("dob")}
+                  type="date"
+                  className="border-0 px-3 py-3 placeholder-blue-300 text-blue-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="Date"
+                />
+                {errors.dob && (
+                  <p className="text-red-500 text-xs italic">
+                    {errors.dob.message}
+                  </p>
+                )}
+              </div>
 
-                <div id="gender" className="relative w-full mb-3">
-                  <label className="block uppercase text-blue-600 text-xs font-bold mb-2">
-                    Gender
-                  </label>
-                  <div className="flex flex-wrap">
-                    <label className="flex items-center cursor-pointer m-2">
-                      <input
-                        onChange={handleInput}
-                        value={dataForm.gender}
-                        className="scale-125 mr-2 cursor-pointer"
-                        type="radio"
-                        name="gender"
-                        defaultValue="m"
-                        checked
-                      />
-                      <div className="title -mt-1">male</div>
-                    </label>
-
-                    <label className="flex items-center cursor-pointer m-2">
-                      <input
-                        onChange={handleInput}
-                        value={dataForm.gender}
-                        className="scale-125 mr-2 cursor-pointer"
-                        type="radio"
-                        name="gender"
-                        defaultValue="f"
-                      />
-                      <div className="title -mt-1">female</div>
-                    </label>
-                  </div>
-                </div>
-                <div id="password" className="relative w-full mb-3">
-                  <label className="block uppercase text-blue-600 text-xs font-bold mb-2">
-                    Password
-                  </label>
-                  <input
-                    name="password"
-                    onChange={handleInput}
-                    value={dataForm.password}
-                    type="password"
-                    className="border-0 px-3 py-3 placeholder-blue-300 text-blue-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="Password"
-                  />
-                </div>
-
-                <div id="submit-button" className="text-center mt-6">
-                  <button
-                    className="bg-blue-800 text-white active:bg-blue-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                    type="submit"
+              <div className="flex">
+                <div id="class" className="relative w-full mb-3">
+                  <label
+                    className="block uppercase text-blue-600 text-xs font-bold mb-2"
+                    htmlFor="class"
                   >
-                    Sign Up
-                  </button>
+                    Class
+                  </label>
+                  <select
+                    id="class"
+                    value={classValue}
+                    onChange={handleClassChange}
+                  >
+                    <option value="" disabled selected>
+                      Select Class
+                    </option>
+                    {Object.keys(dataForClass).map((key) => (
+                      <option key={key} value={key}>
+                        Class {key}
+                      </option>
+                    ))}
+                  </select>
                 </div>
-              </form>
-            </div>
+                <div id="section" className="relative w-full mb-3">
+                  <label
+                    className="block uppercase text-blue-600 text-xs font-bold mb-2"
+                    htmlFor="section"
+                  >
+                    Section
+                  </label>
+                  <select
+                    id="section"
+                    value={sectionValue}
+                    onChange={handleSectionChange}
+                    disabled={!classValue}
+                  >
+                    <option value="" disabled selected>
+                      Select Section
+                    </option>
+                    {availableSections.map((section) => (
+                      <option key={section} value={section}>
+                        {section}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div id="gender" className="relative w-full mb-3">
+                <label
+                  className="block uppercase text-blue-600 text-xs font-bold mb-2"
+                  htmlFor="gender"
+                >
+                  Gender
+                </label>
+                <div className="flex flex-wrap">
+                  <label className="flex items-center cursor-pointer m-2">
+                    <input
+                      {...register("gender")}
+                      value="male"
+                      type="radio"
+                      className="scale-125 mr-2 cursor-pointer"
+                    />
+                    <div className="title -mt-1">male</div>
+                  </label>
+                  <label className="flex items-center cursor-pointer m-2">
+                    <input
+                      {...register("gender")}
+                      value="female"
+                      type="radio"
+                      className="scale-125 mr-2 cursor-pointer"
+                    />
+                    <div className="title -mt-1">female</div>
+                  </label>
+                </div>
+                {errors.gender && (
+                  <p className="text-red-500 text-xs italic">
+                    {errors.gender.message}
+                  </p>
+                )}
+              </div>
+              <div id="password" className="relative w-full mb-3">
+                <label
+                  className="block uppercase text-blue-600 text-xs font-bold mb-2"
+                  htmlFor="password"
+                >
+                  Password
+                </label>
+                <input
+                  {...register("password")}
+                  type="password"
+                  className="border-0 px-3 py-3 placeholder-blue-300 text-blue-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="Password"
+                />
+                {errors.password && (
+                  <p className="text-red-500 text-xs italic">
+                    {errors.password.message}
+                  </p>
+                )}
+              </div>
+              <div id="submit-button" className="text-center mt-6">
+                <button
+                  className="bg-blue-800 text-white active:bg-blue-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                  type="submit"
+                >
+                  Sign Up
+                </button>
+              </div>
+            </form>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

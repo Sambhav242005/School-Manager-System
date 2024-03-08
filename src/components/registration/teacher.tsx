@@ -67,7 +67,7 @@ export default function () {
             <div className="rounded-t mb-0 px-6 py-6">
               <div className="text-center mb-3">
                 <h6 className="text-blue-500 text-sm font-bold">
-                  Parents Registration Form
+                  Teacher Registration Form
                 </h6>
               </div>
               <div className="btn-wrapper text-center"></div>
